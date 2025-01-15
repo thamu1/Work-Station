@@ -1,0 +1,163 @@
+<html>
+
+<head>
+    {% load static %}
+
+    <link href="{% static '/css/download_invoice_copy.css' %}" rel="stylesheet">
+    {% comment %} <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script> {% endcomment %}
+
+</head>
+
+{% comment %} <body>
+    {% if invoice_detail%}
+
+
+        <table>
+
+            <tr>
+                <th>Date</th>
+                <th>Customer</th>
+                <th>Product_name</th>
+                <th>Product_price</th>
+                <th>Amount</th>
+                <th>Total</th>
+            </tr>
+            {% for i in  invoice_detail %}
+                <tr>
+                    <td>{{i.0}}</td>
+                    <td>{{i.1}}</td>
+                    <td>{{i.2}}</td>
+                    <td>{{i.3}}</td>
+                    <td>{{i.4}}</td>
+                    <td>{{i.5}}</td>
+                </tr>
+            {% endfor %}
+            
+        </table>
+    {% else %}
+        <h1> Nothing to show </h1>
+    {% endif %}
+
+</body> {% endcomment %}
+
+
+<body>
+    {% if invoice_detail%}
+        <header>
+            <h1>Invoice</h1>
+            <address contenteditable>
+                <p>Jonathan Neal</p>
+                <p>101 E. Chapman Ave<br>Orange, CA 92866</p>
+                <p>(800) 555-1234</p>
+            </address>
+        </header>
+        <form method="post" action="final_entry">
+            {% csrf_token %}
+            <article>
+                <h1>Recipient</h1>
+                <address contenteditable>
+                    <input id="input_tag" name="customer_name" value={{invoice_detail.1}} readonly></p>
+                </address>
+                <table class="meta">
+                    <tr>
+                        <th><span contenteditable>ID</span></th>
+                        <td><span><input id="input_tag" name="id" value={{invoice_detail.5}} readonly></span></td>
+                    </tr>
+                    <tr>
+                        <th><span contenteditable>Date</span></th>
+                        <td><span><input id="input_tag" name="date" type="text" value={{invoice_detail.4}} readonly></span></td>
+                    </tr>
+                </table>
+                <table class="inventory">
+                    <thead>
+                        <tr>
+                            <th><span>Product_name</span></th>
+                            <th><span>Product_price</span></th>
+                            <th><span>Product Total Amount</span></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for i in  invoice_detail.0 %}
+                            <tr>
+                                <td><span><input id="input_tag" name="product_name" value={{i.2}} readonly></span></td>
+                                <td><span><input id="input_tag" name="product_price" value={{i.3}} readonly></span></td>
+                                <td><span><input id="input_tag" name="total_cost_of_product" value={{i.4}} readonly></span></td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+
+                <table class="balance">
+                    <tr>
+                        <th><span>SGST + IGST </span></th>
+                        <td><span><input type="text" name="gst" value = "9% + 9%"></span></td>
+                    </tr>
+                    <tr>
+                        <th><span>Total</span></th>
+                        <td><span><input id="input_tag" type="text" name="total_amount" value={{invoice_detail.2}} readonly></span></td>
+                    </tr>
+                    <tr>
+                        <th><span>Amount payable</span></th>
+                        <td><span><input id="input_tag" type="text" name="amount_payable" value={{invoice_detail.3}} readonly></span></td>
+                    </tr>
+                    <tr>
+                        <th><span>Amount Paid</span></th>
+                        <td><span><input id="input_tag" type="number" name="amount_paid" required></span></td>
+                    </tr>
+                    <tr>
+                        <th><span>Balance Due</span></th>
+                        <td><span><input id="input_tag" type="number" name="balance_due" required></span></td>
+                    </tr>
+                </table>
+
+                
+                            
+            </article>
+        
+
+            {% else %}
+                <h1> Nothing to show </h1>
+            {% endif %}
+
+            <aside>
+                <h1><span contenteditable>Additional Notes</span></h1>
+                <div contenteditable>
+                    <p>Note</p>
+                </div>
+            </aside>
+
+            <center><button style="cursor:pointer;" name="download_invoice" type="submit">Home</a></center>
+            {% comment %} <center><a href={% url 'create_product'%}>Home</a></center> {% endcomment %}
+        <form>
+
+    {% comment %} <center><button onclick="downloadPage()">Download</button></center> {% endcomment %}
+
+
+    {% comment %} <script>
+        function downloadPage() {
+            // Use html2canvas to capture the entire page as an image
+            html2canvas(document.body).then(function(canvas) {
+                // Convert the canvas to a data URL
+                var imageDataUrl = canvas.toDataURL('image/png');
+    
+                // Create a download link
+                var a = document.createElement('a');
+                a.href = imageDataUrl;
+                a.download = 'screenshot.png';
+    
+                // Append the link to the document body
+                document.body.appendChild(a);
+    
+                // Trigger a click on the link to start the download
+                a.click();
+    
+                // Remove the link from the document body
+                document.body.removeChild(a);
+            });
+        }
+    </script> {% endcomment %}
+
+
+</body>
+
+</html>
