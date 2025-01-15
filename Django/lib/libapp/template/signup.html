@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Library Home</title>
+    </head>
+    <body>
+        <center><h1>Welcome to the Library {{username}}</h1></center>
+
+        {% if stuinfo %}
+            <h1>Registered By : {{stuinfo}}</h1>
+        {% endif %}
+
+
+        <pre>
+        <form action="" method="POST">
+            {% csrf_token %}
+                            Sign up form<br>
+                Enter Name    : <input type="text" name="signupname"><br>
+                Enter Roll No : <input type="text" name="signuprollno">
+                <button type="submit" name="signup_form">submit</button>
+        </form>
+        </pre>
+    
+    </body>
+</html>

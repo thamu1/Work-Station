@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Library Home</title>
+    </head>
+    <body >
+        <div style="text-align: center;">
+        <center><h1 style="color: blueviolet;">Welcome to the Library {{username}}</h1></center>
+
+        {% if stuinfo %}
+            <h1 style="color: rgb(5, 241, 16);">{{stuinfo}}</h1>
+        {% endif %}
+
+        {% if signup %}
+            <h1 style="color: rgb(243, 12, 193);">{{signup}}</h1>
+        {% endif %}
+
+        <!-- <button><a href="signup">signup</a></button> -->
+
+        <pre>                            
+        <form action="" method="POST">
+            {% csrf_token %}
+                            Log in form<br>
+                <!-- Enter Name    : <input type="text" name="name"><br> -->
+                Enter Roll No : <input type="text" name="rollno"><br>
+                <button type="submit" name="login_form">submit</button>
+        </form>
+
+        <form action="" method="POST">
+            {% csrf_token %}
+                            Sign up form<br>
+                Enter Name    : <input type="text" name="signupname"><br>
+                Enter Roll No : <input type="text" name="signuprollno"><br>
+                <button type="submit" name="signup_form">submit</button>
+        </form>
+        </pre>
+        </div>
+    
+    </body>
+</html>
