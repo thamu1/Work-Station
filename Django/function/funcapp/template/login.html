@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Function Cash Details</title>
+        {% load static %}
+        <link rel="stylesheet" type="text/css" href="{% static 'functions.css' %}">
+    </head>
+    <body>
+        <div id="login_container">
+            <ul>
+                <form  method="POST" action="login">
+                    {% csrf_token %}
+                    <li><h1>Login Here</h1></li>
+                    <pre>
+                        <li>email     :  <input id="user" type="email" name="email" required></li>
+                        <li>password  :  <input type="password" name="password" required></li>
+                    </pre>
+                    <li><button type="submit" name = 'login'>submit</button></li>
+                
+                </form>
+            </ul>
+        </div>
+    </body>
+</html>

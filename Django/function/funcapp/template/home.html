@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Function Cash Details</title>
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'functions.css' %}">
+    </head>
+    <body>
+        <a href="login">login</a>
+        <a href="logout"><button>logout</button></a>
+
+            <div>
+                    <center><h1>Welcome to the function</h1></center>
+                    {% if check %}
+                        {{check}}
+                    {% endif %}
+                    <h1> 
+                        {% if insert %}
+                            <h1>Data inserted </h1>
+                            <h1>{{insert}} </h1>
+                        {% endif %}
+                    </h1>
+
+                    <h1>
+                        {% if get %}
+                            <h1>Last inserted Data </h1>
+                        <h1> {{get}} </h1>
+                        {% endif %}
+                    </h1>
+
+                    <h1>
+                        {% if update %}
+                            <h1>Data updated</h1>
+                            <h1>{{update}}</h1>
+                        {% endif %}
+                    </h1>
+                
+
+
+                <button  class="ub" type="button"  onclick="updatedata()">Update <-> insert</button>
+                <a href="get">adhome</a>
+                <div id="updateDivId" class="div1">
+                    <h1>Update Data Form</h1>
+                    <form action="home" method="POST">
+                        {% csrf_token %}
+                    <pre>
+                        <p>Id            : <input type="number" name="id" required></p><br>
+                        <p>City          : <input type="text" name="ucity" required></p>
+                        <p>Name1         : <input type="text" name="uname1" required></p>
+                        <p>Name2         : <input type="text" name="uname2" required></p>
+                        <p>Amount        : <input type='number' name="uamount" required></p>
+                        <p>Extra Special : <input type="text" name="uextra" required></p>
+                    </pre>
+                        <button type="submit" name="update">submit</button>
+                    </form>  
+                </div>
+
+
+                <div class="div2" id="div2">
+                    <form action='home' method='POST' name="insert">
+                        <h1>Enter Insert Data</h1>
+                        {% csrf_token %}
+                        <pre>
+                            <p>City          : <input type="text" name="city" required></p>
+                            <p>Name1         : <input type="text" name="name1" required></p>
+                            <p>Name2         : <input type="text" name="name2" required></p>
+                            <p>Amount        : <input type='number' name="amount" required></p>
+                            <p>Extra Special : <input type="text" name="extra" required></p>
+                        </pre>
+                            <button type="submit" name="insert">submit</button>
+                    </form>
+            </div>
+
+                <!-- <button class="lub" type="button" onclick="lastupdated()">last Update data</button> -->
+                <div id="lastUpdatedID" class="div3">
+                    <h1>Last Updated Data Form</h1>
+                    <form action="home" method="POST">
+                        {% csrf_token %}
+                        <button type="submit" name="get">submit</button>
+                    </form>
+                    
+                </div>
+                
+            </div>
+        <script>
+            // function lastupdated()
+            // {
+            //     var x = document.getElementById('lastUpdatedID');
+            //     var d2 = document.getElementById('div2');
+            //     if(x.style.display === 'none')
+            //     {
+            //         x.style.display = "block";
+            //         d2.style.display = 'none';
+            //     }
+            //     else 
+            //     {
+            //         x.style.display = "none";
+            //         d2.style.display = 'block';
+            //         // d2.style.marginRight = '37%';
+            //     }
+            // }
+            
+            function updatedata()
+            {
+                
+                var x = document.getElementById('updateDivId');
+                var d2 = document.getElementById('div2');
+                if(x.style.display === 'none')
+                {
+                    x.style.display = "block";
+                    d2.style.display = 'none';
+                }
+                else 
+                {
+                    x.style.display = "none";
+                    d2.style.display = 'block';
+                    // d2.style.marginRight = '37%';
+                }
+            }
+
+            
+        </script>
+    </body>
+</html>

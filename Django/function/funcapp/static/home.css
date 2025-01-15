@@ -1,0 +1,40 @@
+#container
+{
+    margin: 0% 10% 0% 10%;
+}
+
+#status
+{
+    color: rgb(0, 219, 37);
+}
+
+#all form
+{
+    /* display:flex; */
+    display: grid;
+    grid-template-columns: repeat(8, 1fr); /* Adjust the number of columns as needed */
+    gap: 5px; /* Adjust the gap between cells */
+    list-style: none;
+    margin: 0;
+    padding: 5px; /* Adjust the cell padding as needed */
+    border: 1px solid #ccc;
+}
+
+#heading
+{
+    display: grid;
+    grid-template-columns: repeat(8, 1fr); /* Adjust the number of columns as needed */
+    gap: 5px; /* Adjust the gap between cells */
+    list-style: none;
+    margin: 0;
+    padding: 5px; /* Adjust the cell padding as needed */
+    border: 1px solid #ccc;
+}
+
+
+input
+{
+    border: none;
+    outline: none;
+}
+

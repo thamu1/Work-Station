@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Function Cash Details</title>
+        {% load static %}
+        <link rel="stylesheet" type="text/css" href="{% static 'function.css' %}">
+    </head>
+    <body>
+        {% if se %}
+            {{se}}
+        {% endif %}
+
+        {% if check %}
+            {{check}}
+        {% endif %}
+
+        <a href="login">login</a>
+        <h1>this is empty home</h1>
+        <h1>
+            {% if failed or empty%}
+                {{failed}}
+                {{empty}}
+            {% endif %}
+        </h1>
+    </body>
+</html>

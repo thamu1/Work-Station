@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Function Cash Details</title>
+        {% load static %}
+        <link rel="stylesheet" type="text/css" href="{% static 'homeCopy.css' %}">
+    </head>
+    <body>
+        <a href="logout"><button>logout</button></a>
+        <center><h1>Welcome to the function</h1></center><br>
+        <div id="container">
+            <ul id="all">
+                <form method="post" action="get">
+                    {% csrf_token %}
+                    <li><input type="text" name="city" placeholder="city" required></li>
+                    <li><input type="text" name="name1"  placeholder="name1" required></li>
+                    <li><input type="text" name="name2" placeholder="name2" required></li>
+                    <li><input type="text" name="amount" placeholder="amount" required></li>
+                    <li><input type="text" name="extra" placeholder="extra" required></li>
+                    <li><button type="submit" name="insert">insert</button></li>
+                </form>
+            </ul><br>
+        </div>
+        {% if all or update or delete or insert%}
+            <center><h3 id="status">{{status}}</h3></center>
+            <div id="container">
+                <div>
+                    {% for i in all %}
+                        <ul id="all">
+                            <form method="post" action="get">
+                                {% csrf_token %}
+                                <li><input type="hidden" name="id" placeholder="{{i.0}}" value="{{i.0}}" required></li>
+                                <li><input type="text" name="city" placeholder="{{i.1}}" value="{{i.1}}" required></li>
+                                <li><input type="text" name="name1"  placeholder="{{i.2}}" value="{{i.2}}" required></li>
+                                <li><input type="text" name="name2" placeholder="{{i.3}}" value="{{i.3}}" required></li>
+                                <li><input type="text" name="amount" placeholder="{{i.4}}" value="{{i.4}}" required></li>
+                                <li><input type="text" name="extra" placeholder="{{i.5}}" value="{{i.5}}" required></li>
+                                <li><button type="submit" name="update">update</button></li>
+                                <li><button type="submit" name="delete">delete</button></li>
+                            </form>
+                        </ul><br> 
+                    {% endfor %}
+                </div>
+            </div>
+        <!-- {% elif update %}
+            {{update}}
+        {% elif delete %}
+            {{delete}}
+        {% elif insert %}
+            {{insert}} -->
+        {% elif empty %}
+            {{empty}}
+            
+        {% endif %}
+        
+
+
+    </body>
+</html>
