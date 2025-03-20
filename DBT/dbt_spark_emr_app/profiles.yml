@@ -1,0 +1,54 @@
+
+
+dbt_spark_emr_app:
+  outputs:
+    dev:
+      host: localhost
+      method: thrift
+      port: 10000
+      schema: vehicle_poc
+      type: spark
+      user: hadoop
+      server_side_parameters:
+        "mapreduce.fileoutputcommitter.marksuccessfuljobs": "false"
+  target: dev
+
+
+mysql_app:
+  outputs:
+    dev:
+      database: learn
+      driver: MySQL ODBC 8.0 ANSI Driver
+      password: Mysql.08
+      port: 3306
+      schema: learn
+      server: 127.0.0.1
+      type: mysql
+      username: root
+    prod:
+      database:
+      - schema
+      driver: MySQL ODBC 8.0 ANSI Driver
+      password:
+      - password
+      port:
+      - port
+      schema:
+      - schema
+      server:
+      - server/host
+      type: mysql
+      username:
+      - username
+  target: devdbt
+
+spark_test:
+  outputs:
+    dev:
+      host: localhost
+      method: thrift
+      port: 10000
+      schema: default
+      threads: 10
+      type: spark
+  target: dev
