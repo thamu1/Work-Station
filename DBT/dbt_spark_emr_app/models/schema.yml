@@ -1,0 +1,37 @@
+version: 2
+
+models:
+  - name: "vehicle_bronze"
+    schema: "vehicle_poc"
+    config:
+       materialized: table
+  
+  - name: vehicle_silver
+    schema: vehicle_poc
+    config:
+       materialized: table
+  
+  - name: vehicle_gold
+    schema: vehicle_poc
+    config:
+       materialized: table
+
+sources:
+  - name: create_bronze_table
+    schema: vehicle_poc
+    tables:
+      - name: vehicle_ext
+
+  - name: create_silver_table
+    schema: vehicle_poc
+    tables:
+      - name: vehicle_bronze
+
+  - name: create_gold_table
+    schema: vehicle_poc
+    tables:
+      - name: vehicle_silver
+
+
+            
+
